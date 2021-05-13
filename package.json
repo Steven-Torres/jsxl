@@ -1,0 +1,32 @@
+{
+	"name": "jsx-factory",
+	"version": "0.0.1",
+	"description": "A lightweight way to write customizable JSX.",
+	"main": "test/compiled/index.html",
+	"directories": {
+		"test": "test"
+	},
+	"scripts": {
+		"build": "npm run build:runtime & npm run build:test",
+		"build:test": "rm -rf test/compiled && parcel build test/index.html --no-optimize --dist-dir /test/compiled",
+		"build:runtime": "babel src/jsx-runtime.ts --out-file runtime/jsx-runtime.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Steven-Torres/JSX-Factory.git"
+	},
+	"author": "Steven Torres",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/Steven-Torres/JSX-Factory/issues"
+	},
+	"homepage": "https://github.com/Steven-Torres/JSX-Factory#readme",
+	"devDependencies": {
+		"@babel/cli": "^7.13.16",
+		"@babel/core": "^7.14.2",
+		"@babel/plugin-transform-react-jsx": "^7.13.12",
+		"@babel/preset-env": "^7.14.2",
+		"@babel/preset-typescript": "^7.13.0",
+		"parcel": "^2.0.0-beta.2"
+	}
+}
