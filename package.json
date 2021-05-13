@@ -14,14 +14,14 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/Steven-Torres/JSX-Factory.git"
+		"url": "git+https://github.com/Steven-Torres/jsxify.git"
 	},
 	"author": "Steven Torres",
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/Steven-Torres/JSX-Factory/issues"
+		"url": "https://github.com/Steven-Torres/jsxify/issues"
 	},
-	"homepage": "https://github.com/Steven-Torres/JSX-Factory#readme",
+	"homepage": "https://github.com/Steven-Torres/jsxify#readme",
 	"devDependencies": {
 		"@babel/cli": "^7.13.16",
 		"@babel/core": "^7.14.2",
