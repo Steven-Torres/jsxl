@@ -1,4 +1,4 @@
-# JSX-R
+# JSX-R (Javascript XML - Runtime)
 
 ## Usage
 
