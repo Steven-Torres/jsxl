@@ -1,17 +1,36 @@
-# Jsxify
+# JSX-R
 
 ## Usage
 
-The only way to include this package currently is by including this script tag in your `index.html`:
+1. Install with `npm`:
 
-```html
-<script src="https://cdn.jsdelivr.net/gh/Steven-Torres/jsxify@main/runtime/jsx-runtime.js"></script>
+```sh
+npm i jsx-r
 ```
 
-From there you can use it along with babel by specifying a babel pragma:
+2. Install `babel` along with the `@babel/plugin-transform-react-jsx` plugin.
+
+`.babelrc`:
+
+```json
+{
+	"presets": ["@babel/preset-env"],
+	"plugins": [
+		[
+			"@babel/plugin-transform-react-jsx",
+			{
+				"runtime": "automatic",
+				"importSource": "jsx-r/build"
+			}
+		]
+	]
+}
+```
+
+3. Define your components and render to the DOM:
 
 ```javascript
-/** @jsx jsx */
+import { render } from 'jsx-r';
 
 const MyComponent = props => {
 	return <h1>Hello, {props.name}</h1>;

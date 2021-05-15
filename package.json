@@ -1,15 +1,15 @@
 {
-	"name": "jsx-factory",
+	"name": "jsx-r",
 	"version": "0.0.1",
-	"description": "A lightweight way to write customizable JSX.",
-	"main": "test/compiled/index.html",
+	"description": "A lightweight way and customizable runtime for JSX.",
+	"main": "build/jsx-runtime.js",
 	"directories": {
 		"test": "test"
 	},
+	"types": "build/jsx-runtime.d.ts",
 	"scripts": {
-		"build": "npm run build:runtime & npm run build:test",
-		"build:test": "rm -rf test/compiled && parcel build test/index.html --no-optimize --dist-dir /test/compiled",
-		"build:runtime": "babel src/jsx-runtime.ts --out-file runtime/jsx-runtime.js",
+		"build": "tsc",
+		"prepublish": "tsc",
 		"commit": "cz"
 	},
 	"repository": {
@@ -22,19 +22,13 @@
 		"url": "https://github.com/Steven-Torres/jsxify/issues"
 	},
 	"homepage": "https://github.com/Steven-Torres/jsxify#readme",
-	"devDependencies": {
-		"@babel/cli": "^7.13.16",
-		"@babel/core": "^7.14.2",
-		"@babel/plugin-transform-react-jsx": "^7.13.12",
-		"@babel/preset-env": "^7.14.2",
-		"@babel/preset-typescript": "^7.13.0",
-		"commitizen": "^4.2.4",
-		"cz-conventional-changelog": "^3.2.0",
-		"parcel": "^2.0.0-beta.2"
-	},
 	"config": {
 		"commitizen": {
 			"path": "./node_modules/cz-conventional-changelog"
 		}
+	},
+	"devDependencies": {
+		"commitizen": "^4.2.4",
+		"cz-conventional-changelog": "^3.3.0"
 	}
 }

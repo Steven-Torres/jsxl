@@ -1,6 +1,10 @@
-import { render } from '../runtime/jsx-runtime';
+import { JSX, render } from '../build/jsx-runtime.js';
 
-const ListItem = ({ children, id }: any) => {
+interface ListItemProps extends JSX.Props {
+	id: number | string;
+}
+
+const ListItem: JSX.FnComponent<ListItemProps> = ({ children, id }) => {
 	return <li id={id}>{children}</li>;
 };
 
@@ -12,7 +16,11 @@ const Anchor = ({ value }) => {
 	);
 };
 
-const List = ({ items }) => {
+interface ListProps {
+	items: number[];
+}
+
+const List: JSX.FnComponent<ListProps> = ({ items }) => {
 	return (
 		<ul class="list hello">
 			{items.map((item: any, i: number) => (
@@ -24,7 +32,7 @@ const List = ({ items }) => {
 	);
 };
 
-const App = () => {
+const App: JSX.FnComponent<any> = () => {
 	return <List items={[1, 2, 3, 4, 5]} />;
 };
 

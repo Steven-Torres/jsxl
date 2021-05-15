@@ -1,7 +1,16 @@
-namespace JSX {
+export namespace JSX {
+	export interface Props {
+		[prop: string]: any;
+		children?: JSX.Element[];
+	}
+
 	export interface Element {
 		type: string;
-		props: any;
+		props: JSX.Props;
+	}
+
+	export interface FnComponent<P extends JSX.Props> {
+		(props: P): JSX.Element;
 	}
 }
 
@@ -13,19 +22,18 @@ const createTextElement = (text: string): JSX.Element => ({
 	},
 });
 
-export const jsx = (type: string | Function, config: any) => {
+export const jsx = (type: string | Function, config: JSX.Props) => {
 	if (typeof type === 'function') {
 		return type(config);
 	}
 
 	const { children = [], ...props } = config;
-	const childrenProps = [].concat(children);
 
 	return {
 		type,
 		props: {
 			...props,
-			children: childrenProps.map(child =>
+			children: children.map(child =>
 				typeof child === 'object' ? child : createTextElement(child)
 			),
 		},
@@ -34,7 +42,7 @@ export const jsx = (type: string | Function, config: any) => {
 
 export const jsxs = (type: string | Function, config: any) => jsx(type, config);
 
-export const render = (element: JSX.Element, container) => {
+export const render = (element: JSX.Element, container: Element) => {
 	const dom =
 		element.type === 'TEXT_ELEMENT'
 			? container.ownerDocument.createTextNode('')
@@ -46,15 +54,17 @@ export const render = (element: JSX.Element, container) => {
 	Object.keys(element.props)
 		.filter(isProperty)
 		.forEach(name => {
-			if (isAttribute(name)) {
+			if (isAttribute(name) && dom instanceof HTMLElement) {
 				dom.setAttribute(name, element.props[name]);
 				return;
 			}
 			const domName = name === 'class' ? 'className' : name;
-			dom[domName] = element.props[name];
+			(dom as Record<string, any>)[domName] = element.props[name];
 		});
 
-	element.props.children.forEach(child => render(child, dom));
+	if (dom instanceof Element && element.props.children) {
+		element.props.children.forEach((child: JSX.Element) => render(child, dom));
+	}
 	container.append(dom);
 	return container;
 };
