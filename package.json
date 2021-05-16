@@ -1,5 +1,5 @@
 {
-	"name": "jsx-r",
+	"name": "@jsxl/runtime",
 	"version": "0.0.1",
 	"description": "A lightweight way and customizable runtime for JSX.",
 	"main": "build/jsx-runtime.js",

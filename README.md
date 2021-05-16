@@ -1,11 +1,11 @@
-# JSX-R (Javascript XML - Runtime)
+# JSXL (Javascript XML as a Language)
 
 ## Usage
 
 1. Install with `npm`:
 
 ```sh
-npm i jsx-r
+npm i @jsxl/runtime
 ```
 
 2. Install `babel` along with the `@babel/plugin-transform-react-jsx` plugin.
@@ -20,7 +20,7 @@ npm i jsx-r
 			"@babel/plugin-transform-react-jsx",
 			{
 				"runtime": "automatic",
-				"importSource": "jsx-r/build"
+				"importSource": "@jsxl/runtime/build"
 			}
 		]
 	]
@@ -30,9 +30,11 @@ npm i jsx-r
 3. Define your components and render to the DOM:
 
 ```javascript
-import { render } from 'jsx-r';
+import { render } from 'jsxl';
 
 const MyComponent = props => {
 	return <h1>Hello, {props.name}</h1>;
 };
+
+render(<MyComponent />, document.body);
 ```
