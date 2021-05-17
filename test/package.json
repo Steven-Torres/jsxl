@@ -4,7 +4,8 @@
 	"description": "",
 	"main": "compiled/index.html",
 	"scripts": {
-		"build": "parcel build index.html"
+		"build": "rm -rf compiled && parcel build index.html --no-optimize",
+		"build:babel": "babel jsx.tsx --out-file compiled.js"
 	},
 	"keywords": [],
 	"author": "",

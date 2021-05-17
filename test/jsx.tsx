@@ -1,4 +1,4 @@
-import { JSX, render } from '../build/jsx-runtime.js';
+import { JSX, render } from '@jsxl/runtime';
 
 interface ListItemProps extends JSX.Props {
 	id: number | string;

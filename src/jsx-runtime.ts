@@ -1,70 +1,46 @@
-export namespace JSX {
-	export interface Props {
-		[prop: string]: any;
-		children?: JSX.Element[];
-	}
+import { JSX } from './@types/jsx';
+import { assignProps, createTextElement, getDomNode } from './utils';
 
-	export interface Element {
-		type: string;
-		props: JSX.Props;
-	}
-
-	export interface FnComponent<P extends JSX.Props> {
-		(props: P): JSX.Element;
-	}
-}
-
-const createTextElement = (text: string): JSX.Element => ({
-	type: 'TEXT_ELEMENT',
-	props: {
-		nodeValue: text,
-		children: [],
-	},
-});
-
-export const jsx = (type: string | Function, config: JSX.Props) => {
+export const jsx = (
+	type: string | Function,
+	config: { children?: JSX.Element | JSX.Element[] | string }
+): JSX.Element => {
 	if (typeof type === 'function') {
 		return type(config);
 	}
 
 	const { children = [], ...props } = config;
 
+	let elChildren: JSX.Element[];
+
+	if (Array.isArray(children)) {
+		elChildren = children;
+	} else if (typeof children === 'string') {
+		elChildren = [createTextElement(children)];
+	} else {
+		elChildren = [children];
+	}
+
 	return {
 		type,
 		props: {
 			...props,
-			children: children.map(child =>
-				typeof child === 'object' ? child : createTextElement(child)
-			),
+			children: elChildren,
 		},
 	};
 };
 
-export const jsxs = (type: string | Function, config: any) => jsx(type, config);
-
 export const render = (element: JSX.Element, container: Element) => {
-	const dom =
-		element.type === 'TEXT_ELEMENT'
-			? container.ownerDocument.createTextNode('')
-			: container.ownerDocument.createElement(element.type);
+	const node = getDomNode(element, container);
+	console.log(element);
+	assignProps(node, element.props);
 
-	const isProperty = (key: string) => key !== 'children';
-	const isAttribute = (str: string) => /aria-.*|data-.*/.test(str);
-
-	Object.keys(element.props)
-		.filter(isProperty)
-		.forEach(name => {
-			if (isAttribute(name) && dom instanceof HTMLElement) {
-				dom.setAttribute(name, element.props[name]);
-				return;
-			}
-			const domName = name === 'class' ? 'className' : name;
-			(dom as Record<string, any>)[domName] = element.props[name];
-		});
-
-	if (dom instanceof Element && element.props.children) {
-		element.props.children.forEach((child: JSX.Element) => render(child, dom));
+	if (node instanceof Element && Array.isArray(element.props.children)) {
+		element.props.children.forEach(child => render(child, node));
 	}
-	container.append(dom);
+
+	container.append(node);
 	return container;
 };
+
+export { jsx as jsxs, JSX };
