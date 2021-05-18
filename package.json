@@ -1,6 +1,6 @@
 {
 	"name": "@jsxl/runtime",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "A lightweight way and customizable runtime for JSX.",
 	"main": "build/jsx-runtime.js",
 	"directories": {
@@ -15,14 +15,14 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/Steven-Torres/jsxify.git"
+		"url": "git+https://github.com/Steven-Torres/jsxl.git"
 	},
 	"author": "Steven Torres",
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/Steven-Torres/jsxify/issues"
+		"url": "https://github.com/Steven-Torres/jsxl/issues"
 	},
-	"homepage": "https://github.com/Steven-Torres/jsxify#readme",
+	"homepage": "https://github.com/Steven-Torres/jsxl#readme",
 	"config": {
 		"commitizen": {
 			"path": "./node_modules/cz-conventional-changelog"
