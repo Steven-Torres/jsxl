@@ -5,14 +5,14 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
-var _jsxRuntime = require("../build/jsx-runtime.js");
+var _runtime = require("@jsxl/runtime");
 
-var _jsxRuntime2 = require("@jsxl/runtime/build/jsx-runtime");
+var _jsxRuntime = require("@jsxl/runtime/jsx-runtime");
 
 var ListItem = function ListItem(_ref) {
   var children = _ref.children,
       id = _ref.id;
-  return (0, _jsxRuntime2.jsx)("li", {
+  return (0, _jsxRuntime.jsx)("li", {
     id: id,
     children: children
   });
@@ -20,7 +20,7 @@ var ListItem = function ListItem(_ref) {
 
 var Anchor = function Anchor(_ref2) {
   var value = _ref2.value;
-  return (0, _jsxRuntime2.jsx)("a", {
+  return (0, _jsxRuntime.jsx)("a", {
     href: "#",
     "data-value": value,
     children: value
@@ -29,12 +29,12 @@ var Anchor = function Anchor(_ref2) {
 
 var List = function List(_ref3) {
   var items = _ref3.items;
-  return (0, _jsxRuntime2.jsx)("ul", {
+  return (0, _jsxRuntime.jsx)("ul", {
     "class": "list hello",
     children: items.map(function (item, i) {
-      return (0, _jsxRuntime2.jsx)(ListItem, {
+      return (0, _jsxRuntime.jsx)(ListItem, {
         id: i,
-        children: (0, _jsxRuntime2.jsx)(Anchor, {
+        children: (0, _jsxRuntime.jsx)(Anchor, {
           value: item
         })
       });
@@ -43,15 +43,11 @@ var List = function List(_ref3) {
 };
 
 var App = function App() {
-  return (0, _jsxRuntime2.jsx)(List, {
+  return (0, _jsxRuntime.jsx)(List, {
     items: [1, 2, 3, 4, 5]
   });
 };
 
-(0, _jsxRuntime.render)((0, _jsxRuntime2.jsx)(App, {}), document.body);
+(0, _runtime.render)((0, _jsxRuntime.jsx)(App, {}), document.body);
 var _default = App;
 exports["default"] = _default;
-
-var test = function test() {
-  return (0, _jsxRuntime2.jsx)("h1", {});
-};

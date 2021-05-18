@@ -11,28 +11,24 @@ export const jsx = (
 
 	const { children = [], ...props } = config;
 
-	let elChildren: JSX.Element[];
-
-	if (Array.isArray(children)) {
-		elChildren = children;
-	} else if (typeof children === 'string') {
-		elChildren = [createTextElement(children)];
-	} else {
-		elChildren = [children];
-	}
+	const childrenProps = Array.isArray(children)
+		? children
+		: typeof children === 'object'
+		? [children]
+		: [createTextElement(children)];
 
 	return {
 		type,
 		props: {
 			...props,
-			children: elChildren,
+			children: childrenProps,
 		},
 	};
 };
 
 export const render = (element: JSX.Element, container: Element) => {
 	const node = getDomNode(element, container);
-	console.log(element);
+
 	assignProps(node, element.props);
 
 	if (node instanceof Element && Array.isArray(element.props.children)) {

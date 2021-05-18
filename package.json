@@ -10,7 +10,8 @@
 	"scripts": {
 		"build": "tsc",
 		"prepublish": "tsc",
-		"commit": "cz"
+		"commit": "cz",
+		"watch": "tsc -w"
 	},
 	"repository": {
 		"type": "git",

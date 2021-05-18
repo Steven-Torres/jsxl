@@ -2,9 +2,9 @@
 	"name": "test",
 	"version": "1.0.0",
 	"description": "",
-	"main": "compiled/index.html",
+	"main": "build/index.html",
 	"scripts": {
-		"build": "rm -rf compiled && parcel build index.html --no-optimize",
+		"build": "rm -rf build && parcel build index.html --no-optimize --no-cache",
 		"build:babel": "babel jsx.tsx --out-file compiled.js"
 	},
 	"keywords": [],
