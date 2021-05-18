@@ -34,7 +34,7 @@ npm i @jsxl/runtime
 3. Define your components and render to the DOM:
 
 ```javascript
-import { render } from 'jsxl';
+import { render } from '@jsxl/runtime';
 
 const MyComponent = props => {
 	return <h1>Hello, {props.name}</h1>;
