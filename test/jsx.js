@@ -7,7 +7,7 @@ exports["default"] = void 0;
 
 var _runtime = require("@jsxl/runtime");
 
-var _jsxRuntime = require("@jsxl/runtime/jsx-runtime");
+var _jsxRuntime = require("@jsxl/runtime/build/jsx-runtime");
 
 var ListItem = function ListItem(_ref) {
   var children = _ref.children,
